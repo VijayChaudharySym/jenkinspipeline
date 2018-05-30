@@ -28,8 +28,8 @@ stages{
                 stage ('Deploy to Staging'){
                     steps {
                         //sh "scp -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
-                        sh "cp **/target/*.war /var/lib/tomcat/webapps"
-                        //sh "sudo -u tomcat cp **/target/*.war /var/lib/tomcat/webapps"
+                        //sh "cp **/target/*.war /var/lib/tomcat/webapps"
+                        sh "sudo -u jenkins cp **/target/*.war /var/lib/tomcat/webapps"
 
                     }
                 }
