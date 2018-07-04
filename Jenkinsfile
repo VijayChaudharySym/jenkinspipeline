@@ -1,22 +1,16 @@
 pipeline {
     agent any
-    
     stages{
-        stage('Init'){
+        stage('Build'){
             steps {
-                echo "Testing..."
+                //sh 'mvn clean package'
+                sh '/usr/local/apache-maven-3.5.3/bin/mvn clean package'
             }
-        }
-
-        stage ('Build'){
-            steps {
-                echo "Building..."
-            }
-        }
-
-        stage ("Deploy"){
-            steps {
-                echo "Deploying..."
+            post {
+                success {
+                    echo 'Now Archiving...'
+                    archiveArtifacts artifacts: '**/target/*.war'
+                }
             }
         }
     }
